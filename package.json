@@ -6,11 +6,10 @@
   },
   "name": "simon",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
-        "build:css": "tailwindcss -i ./static/css/tailwind.css -o ./static/css/output.css --minify",
-      "dev": "tailwindcss -i ./static/css/tailwind.css -o ./static/css/output.css --watch",
-      "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "build": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --minify"
   },
   "keywords": [],
   "author": "",
