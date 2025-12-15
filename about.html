@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Professional Accounting Navbar</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #f5f5f5;
+      }
+
+      /* Navigation Container */
+      nav {
+        background: #1a2332;
+        padding: 0 2rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .nav-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 80px;
+      }
+
+      /* Logo */
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #fff;
+        text-decoration: none;
+        letter-spacing: 0.5px;
+      }
+
+      .logo span {
+        color: #4a90e2;
+      }
+
+      /* Navigation Menu */
+      .nav-menu {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-item {
+        position: relative;
+      }
+
+      .nav-link {
+        color: #e0e0e0;
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 500;
+        padding: 0.5rem 0;
+        transition: color 0.3s ease;
+        display: block;
+      }
+
+      .nav-link:hover {
+        color: #4a90e2;
+      }
+
+      /* Dropdown Menu */
+      .dropdown {
+        position: relative;
+      }
+
+      .dropdown-toggle {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        cursor: pointer;
+      }
+
+      .dropdown-toggle::after {
+        content: "▼";
+        font-size: 0.7rem;
+        transition: transform 0.3s ease;
+      }
+
+      .dropdown:hover .dropdown-toggle::after {
+        transform: rotate(180deg);
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #fff;
+        min-width: 220px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        border-radius: 8px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        margin-top: 1rem;
+      }
+
+      .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .dropdown-menu li {
+        list-style: none;
+      }
+
+      .dropdown-menu a {
+        color: #333;
+        padding: 0.8rem 1.2rem;
+        display: block;
+        text-decoration: none;
+        transition: background 0.3s ease;
+        font-size: 0.9rem;
+      }
+
+      .dropdown-menu a:hover {
+        background: #f0f7ff;
+        color: #4a90e2;
+      }
+
+      .dropdown-menu li:first-child a {
+        border-radius: 8px 8px 0 0;
+      }
+
+      .dropdown-menu li:last-child a {
+        border-radius: 0 0 8px 8px;
+      }
+
+      /* CTA Button */
+      .cta-button {
+        background: #4a90e2;
+        color: #fff;
+        padding: 0.7rem 1.5rem;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.95rem;
+      }
+
+      .cta-button:hover {
+        background: #357abd;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
+      }
+
+      .phone-icon {
+        display: none;
+      }
+
+      /* Hamburger Menu */
+      .hamburger {
+        display: none;
+        cursor: pointer;
+        color: #fff;
+        font-size: 2rem;
+      }
+
+      .hamburger .material-icons {
+        transition: transform 0.3s ease;
+      }
+
+      /* Mobile Styles */
+      @media screen and (max-width: 968px) {
+        nav {
+          padding: 0 1rem;
+        }
+
+        .nav-container {
+          height: 70px;
+        }
+
+        .hamburger {
+          display: flex;
+        }
+
+        .hamburger.active .material-icons {
+          transform: rotate(90deg);
+        }
+
+        .nav-menu {
+          position: fixed;
+          left: -100%;
+          top: 70px;
+          flex-direction: column;
+          background: #1a2332;
+          width: 100%;
+          text-align: center;
+          transition: left 0.3s ease;
+          padding: 2rem 0;
+          gap: 0;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+          max-height: calc(100vh - 70px);
+          overflow-y: auto;
+        }
+
+        .nav-menu.active {
+          left: 0;
+        }
+
+        .nav-item {
+          width: 100%;
+          padding: 0.8rem 0;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-link {
+          padding: 0.5rem 2rem;
+          text-align: left;
+        }
+
+        /* Mobile Dropdown */
+        .dropdown-toggle {
+          justify-content: space-between;
+          padding-right: 2rem;
+        }
+        .dropdown-menu {
+          position: static;
+          opacity: 1;
+          visibility: visible;
+          transform: none;
+          box-shadow: none;
+          background: #0f1720;
+          margin-top: 0.5rem;
+          display: none;
+          border-radius: 0;
+        }
+
+        .dropdown.active .dropdown-menu {
+          display: block;
+        }
+
+        .dropdown-menu a {
+          color: #e0e0e0;
+          padding: 0.6rem 3rem;
+          text-align: left;
+        }
+
+        .dropdown-menu a:hover {
+          background: rgba(74, 144, 226, 0.2);
+        }
+
+        .dropdown-toggle::after {
+          display: inline-block;
+        }
+
+        /* CTA Button Mobile */
+        .cta-button {
+          margin: 1rem auto;
+          width: fit-content;
+          padding: 0.8rem;
+          justify-content: center;
+        }
+
+        .phone-text {
+          display: none;
+        }
+
+        .phone-icon {
+          display: block;
+          font-size: 1.5rem;
+        }
+      }
+
+      /* Demo Content */
+      .content {
+        max-width: 1400px;
+        margin: 3rem auto;
+        padding: 0 2rem;
+      }
+
+      .content h1 {
+        color: #1a2332;
+        margin-bottom: 1rem;
+      }
+
+      .content p {
+        color: #666;
+        line-height: 1.6;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-container">
+        <!-- Logo -->
+        <a href="#" class="logo">SNL<span>Accounting</span></a>
+
+        <!-- Navigation Menu -->
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="#home" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="#about" class="nav-link">About</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="#services" class="nav-link dropdown-toggle">Services</a>
+            <ul class="dropdown-menu">
+              <li><a href="#tax">Tax Planning & Preparation</a></li>
+              <li><a href="#audit">Audit & Assurance</a></li>
+              <li><a href="#bookkeeping">Bookkeeping Services</a></li>
+              <li><a href="#payroll">Payroll Management</a></li>
+              <li><a href="#consulting">Business Consulting</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#resources" class="nav-link">Resources</a>
+          </li>
+          <li class="nav-item">
+            <a href="#contact" class="nav-link">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a href="tel:+254710790063" class="cta-button">
+              <span class="material-icons phone-icon">phone</span>
+              <span class="phone-text">0710790063</span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Hamburger Menu -->
+        <div class="hamburger">
+          <span class="material-icons">menu</span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Demo Content -->
+    <div class="content">
+      <h1>About the Firm</h1>
+      <p>
+        SNL Accounting is a company licenced in kenya to provide automated
+        financial services. We utilize the modern shift in technology
+        integrating seamless systems to monitor and analyze in the financial
+        sector.
+      </p>
+    </div>
+
+    <script>
+      // Hamburger Menu Toggle
+      const hamburger = document.querySelector(".hamburger");
+      const navMenu = document.querySelector(".nav-menu");
+      const hamburgerIcon = document.querySelector(
+        ".hamburger .material-icons",
+      );
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navMenu.classList.toggle("active");
+
+        // Toggle between menu and close icons
+        if (hamburger.classList.contains("active")) {
+          hamburgerIcon.textContent = "close";
+        } else {
+          hamburgerIcon.textContent = "menu";
+        }
+      });
+
+      // Close menu when clicking on a link
+      document.querySelectorAll(".nav-link").forEach((link) => {
+        link.addEventListener("click", () => {
+          hamburger.classList.remove("active");
+          navMenu.classList.remove("active");
+          hamburgerIcon.textContent = "menu";
+        });
+      });
+
+      // Mobile Dropdown Toggle
+      if (window.innerWidth <= 968) {
+        const dropdownToggle = document.querySelector(".dropdown-toggle");
+        const dropdown = document.querySelector(".dropdown");
+
+        dropdownToggle.addEventListener("click", (e) => {
+          e.preventDefault();
+          dropdown.classList.toggle("active");
+        });
+      }
+
+      // Handle window resize
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 968) {
+          navMenu.classList.remove("active");
+          hamburger.classList.remove("active");
+        }
+      });
+    </script>
+  </body>
+</html>

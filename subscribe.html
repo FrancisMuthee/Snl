@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Welcome to the Auditors community</title>
+    <style>
+      body {
+        font-family: Arial;
+        background: #f4f6f9;
+        padding: 40px;
+        display: flex;
+        justify-content: center;
+      }
+      .form-box {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        width: 350px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+      input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        margin-bottom: 10px;
+      }
+      button {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        background: #2563eb;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      .note {
+        display: none;
+        margin-top: 10px;
+        padding: 10px;
+        border-radius: 8px;
+      }
+      .success {
+        background: #e0fdf4;
+        color: #0f6848;
+      }
+      .error {
+        background: #fde0e0;
+        color: #b30000;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-box">
+      <h3>Join Email List</h3>
+
+      <form id="subscribeForm">
+        <input
+          id="emailInput"
+          type="email"
+          placeholder="Enter your email"
+          required
+        />
+        <button type="submit">Subscribe</button>
+      </form>
+
+      <div id="msg" class="note"></div>
+    </div>
+    <script src="./static/js/server.js"></script>
+    <script>
+      document
+        .getElementById("subscribeForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const email = document.getElementById("emailInput").value;
+          const msg = document.getElementById("msg");
+
+          const res = await fetch("http://localhost:5500/subscribe", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email }),
+          });
+
+          const data = await res.json();
+
+          if (data.ok) {
+            msg.textContent = data.message;
+            msg.className = "note success";
+            msg.style.display = "block";
+            e.target.reset();
+          } else {
+            msg.textContent = data.message;
+            msg.className = "note error";
+            msg.style.display = "block";
+          }
+        });
+    </script>
+
+    <script src="/static/js/server.js"></script>
+  </body>
+</html>
